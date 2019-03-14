@@ -410,8 +410,8 @@ static void processMouse()
 			if(rect.h) y = (my - rect.y) * TIC80_HEIGHT / rect.h;
 		}
 
-		input->mouse.x = x >= 0 && x < 0xff ? x : 0xff;
-		input->mouse.y = y >= 0 && y < 0xff ? y : 0xff;
+		input->mouse.x = x >= 0 ? (x < TIC80_WIDTH ? x : TIC80_WIDTH - 1) : 0;
+		input->mouse.y = y >= 0 ? (y < TIC80_HEIGHT ? y : TIC80_HEIGHT - 1) : 0;
 	}
 
 	{

@@ -369,8 +369,8 @@ static void app_input(const sapp_event* event)
 			if(rect.w) mx = ((s32)event->mouse_x - rect.x) * TIC80_FULLWIDTH / rect.w - TIC80_OFFSET_LEFT;
 			if(rect.h) my = ((s32)event->mouse_y - rect.y) * TIC80_FULLHEIGHT / rect.h - TIC80_OFFSET_TOP;
 
-			input->mouse.x = mx >= 0 && mx < 0xff ? mx : 0xff;
-			input->mouse.y = my >= 0 && my < 0xff ? my : 0xff;
+			input->mouse.x = mx >= 0 ? (mx < TIC80_WIDTH ? mx : TIC80_WIDTH - 1) : 0;
+			input->mouse.y = my >= 0 ? (my < TIC80_HEIGHT ? my : TIC80_HEIGHT - 1) : 0;
 		}
 		break;
 	case SAPP_EVENTTYPE_MOUSE_DOWN: 
